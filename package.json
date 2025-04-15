@@ -1,0 +1,19 @@
+{
+  "name": "adalinda-evening",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "vite",
+    "clean": "shx rm -rf dist/",
+    "build": "shx cp -r public/ dist/ && shx cp -r src/* dist/games/adalinda-evening && cp index.html dist/index.html",
+    "zip": "cd dist && mkdir archive && zip -r ./archive/adalinda-evening.zip .",
+    "deploy": "npm run clean && npm run build && npm run zip",
+    "preview": "cd dist && vite"
+  },
+  "devDependencies": {
+    "rollup": "~4.14.1",
+    "shx": "^0.3.4",
+    "vite": "~5.2.x",
+    "vite-plugin-static-copy": "^1.0.5"
+  }
+}
