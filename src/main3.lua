@@ -9,7 +9,9 @@ local ids = require "ids"
 -- objects
 require "objects.salad"
 require "objects.salad_place"
+require "objects.kitchen_table"
 -- rooms
+require "rooms.kitchen"
 require "rooms.hall"
 require "rooms.the_end"
 
@@ -20,6 +22,5 @@ game.use = "Это не поможет."
 game.inv = "Зачем мне это?"
 
 function init()
-  take(ids.salad:get())
   walk(ids.hall:get())
 end

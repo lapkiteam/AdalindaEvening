@@ -43,9 +43,11 @@ local ids = {
   salad_place = obj_getter:new("место_для_салата"),
   salad = obj_getter:new("салат"),
   couch = obj_getter:new("диванчик"),
+  kitchen_table = obj_getter:new("kitchen_table"),
   -- rooms
   hall = room_getter:new("hall"),
   the_end = room_getter:new("the_end"),
+  kitchen = room_getter:new("кухня"),
 }
 
 return ids
