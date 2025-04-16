@@ -7,11 +7,11 @@
 require "fmt"
 local ids = require "ids"
 -- objects
-require "salad"
-require "salad_place"
+require "objects.salad"
+require "objects.salad_place"
 -- rooms
-require "hall"
-require "the_end"
+require "rooms.hall"
+require "rooms.the_end"
 
 fmt.para = true
 

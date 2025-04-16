@@ -1,5 +1,5 @@
 local ids = require "ids"
-local couch = require "couch"
+local couch = require "objects.couch"
 
 room {
   nam = ids.hall.id,
