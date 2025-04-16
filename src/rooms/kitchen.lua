@@ -2,9 +2,11 @@ local ids = require "ids"
 
 room {
   nam = ids.kitchen.id,
+  disp = "Кухня",
   way = {
     path { "В холл", ids.hall.id },
   }
 }:with {
-  ids.kitchen_table.id
+  ids.kitchen_table.id,
+  ids.recipe.id,
 }

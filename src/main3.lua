@@ -7,9 +7,14 @@
 require "fmt"
 local ids = require "ids"
 -- objects
-require "objects.salad"
-require "objects.salad_place"
+require "objects.bowl"
+require "objects.canned_peas"
+require "objects.cucumbers"
 require "objects.kitchen_table"
+require "objects.recipe"
+require "objects.salad_place"
+require "objects.salad"
+require "objects.sausage"
 -- rooms
 require "rooms.kitchen"
 require "rooms.hall"
