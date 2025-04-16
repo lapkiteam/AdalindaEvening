@@ -6,7 +6,7 @@
 
 require "fmt"
 
-local couch = require "couch"
+local hall = require "hall"
 
 fmt.para = true
 
@@ -14,14 +14,8 @@ game.act = "Не работает."
 game.use = "Это не поможет."
 game.inv = "Зачем мне это?"
 
-local hall
 ---@type Obj
 local salad
-
-function init()
-  take(salad)
-  walk(hall)
-end
 
 local salad_place
 
@@ -74,37 +68,14 @@ salad_place = obj {
 ---@type Room
 local the_end
 
-local couch = couch:new {
-  on_pulled = function ()
-    if salad_place == salad:where() then
-      walk(the_end)
-      return false
-    else
-      salad_place:enable()
-    end
-  end,
-  on_pushed = function ()
-    salad_place:disable()
-  end,
-}:with {
-  salad_place
-}
-
-hall = room {
-  nam = "зал",
-  disp = "Зал",
-}:with {
-  obj {
-    disp = "Телевизер",
-    dsc = "Включенный {телевизор} стоит на тумбе.",
-    act = function ()
-      pn "По телевизору скоро начнется моя любимая педерача \"Кошка в 16\", которую я всегда смотрю с салатиком."
-    end
-  },
-  couch,
-}
-
 the_end = room {
   disp = "Концовка",
   dsc = "Сижу на диване, смотрю передачу \"Кошка в 16\". В животе предательски бурчит. Это конец."
 }
+
+local hall = hall:new(salad_place, salad, the_end)
+
+function init()
+  take(salad)
+  walk(hall)
+end
