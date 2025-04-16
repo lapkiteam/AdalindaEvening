@@ -6,6 +6,7 @@
 
 require "fmt"
 
+local ids = require "ids"
 local hall = require "hall"
 
 fmt.para = true
@@ -65,17 +66,15 @@ salad_place = obj {
   end,
 }
 
----@type Room
-local the_end
+hall(salad_place)
 
-the_end = room {
+room {
+  nam = ids.the_end.id,
   disp = "Концовка",
   dsc = "Сижу на диване, смотрю передачу \"Кошка в 16\". В животе предательски бурчит. Это конец."
 }
 
-local hall = hall:new(salad_place, salad, the_end)
-
 function init()
   take(salad)
-  walk(hall)
+  walk(ids.hall:get())
 end

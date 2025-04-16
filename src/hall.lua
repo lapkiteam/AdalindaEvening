@@ -1,42 +1,38 @@
+local ids = require "ids"
 local couch = require "couch"
 
----@class Hall: Room
-local hall = std.class({}, room)
-
 ---@param salad_place Obj
----@param salad Obj
----@param the_end Room
----@return Hall
-function hall:new(salad_place, salad, the_end)
-  local instance = room {
-      nam = "зал",
-      disp = "Зал",
-    }:with {
-      obj {
-        disp = "Телевизер",
-        dsc = "Включенный {телевизор} стоит на тумбе.",
-        act = function ()
-          pn "По телевизору скоро начнется моя любимая педерача \"Кошка в 16\", которую я всегда смотрю с салатиком."
+---@return Room
+return function (salad_place)
+  return room {
+    nam = ids.hall.id,
+    disp = "Зал",
+  }:with {
+    obj {
+      disp = "Телевизер",
+      dsc = "Включенный {телевизор} стоит на тумбе.",
+      act = function ()
+        pn "По телевизору скоро начнется моя любимая педерача \"Кошка в 16\", которую я всегда смотрю с салатиком."
+      end
+    },
+    couch:new {
+      on_pulled = function ()
+        local salad_place = ids.salad_place:get()
+        local salad = ids.salad:get()
+        local the_end = ids.the_end:get()
+        if salad_place == salad:where() then
+          walk(the_end)
+          return false
+        else
+          salad_place:enable()
         end
-      },
-      couch:new {
-        on_pulled = function ()
-          if salad_place == salad:where() then
-            walk(the_end)
-            return false
-          else
-            salad_place:enable()
-          end
-        end,
-        on_pushed = function ()
-          salad_place:disable()
-        end,
-      }:with {
-        salad_place
-      },
-    }
-  ---@cast instance Hall
-  return setmetatable(instance, self)
+      end,
+      on_pushed = function ()
+        local salad_place = ids.salad_place:get()
+        salad_place:disable()
+      end,
+    }:with {
+      salad_place
+    },
+  }
 end
-
-return hall
