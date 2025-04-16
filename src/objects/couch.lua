@@ -22,9 +22,10 @@ end
 ---@class Couch: Obj
 local couch = std.class({}, obj)
 
----@param events { on_pulled: (fun(): boolean?)?, on_pushed: (fun(): boolean?)?  }
+---@param id ObjId
+---@param events { on_pulled: (fun(): boolean?)?, on_pushed: (fun(): boolean?)? }
 ---@return Couch
-function couch:new(events)
+function couch:new(id, events)
   local instance = obj {
     disp = "Диванчик",
     state = couch_model:new(),
