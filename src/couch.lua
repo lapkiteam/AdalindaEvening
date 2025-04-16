@@ -47,7 +47,7 @@ function couch:new(events)
             return
           end
         end
-        pn "Отодвигаю диван от стены."
+        pn "Толкаю диван к стене."
         model:push()
       else
         if events.on_pulled then
@@ -56,7 +56,7 @@ function couch:new(events)
             return
           end
         end
-        pn "Толкаю диван к стене."
+        pn "Отодвигаю диван от стены."
         model:push_back()
       end
     end
