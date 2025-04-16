@@ -7,7 +7,7 @@
 require "fmt"
 
 local ids = require "ids"
-local hall = require "hall"
+require "hall"
 
 fmt.para = true
 
@@ -65,8 +65,6 @@ salad_place = obj {
     this:disable()
   end,
 }
-
-hall(salad_place)
 
 room {
   nam = ids.the_end.id,
