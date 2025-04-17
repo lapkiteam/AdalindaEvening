@@ -1,7 +1,6 @@
 ---@class RoomGetter
 ---@field id RoomId
-local room_getter = {}
-room_getter.__index = room_getter
+local room_getter = std.class({})
 
 ---@param room_id RoomId
 ---@return RoomGetter
@@ -20,8 +19,7 @@ end
 
 ---@class ObjGetter
 ---@field id ObjId
-local obj_getter = {}
-obj_getter.__index = obj_getter
+local obj_getter = std.class({})
 
 ---@param obj_id ObjId
 ---@return ObjGetter
