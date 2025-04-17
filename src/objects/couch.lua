@@ -1,22 +1,24 @@
 ---@class CouchModel
 ---@field pulled boolean
-local couch_model = {}
-couch_model.__index = couch_model
 
-function couch_model:new()
+local couch_model = {}
+
+function couch_model.new()
   ---@type CouchModel
   local instance = {
-    pushed_back = false,
+    pulled = false,
   }
-  return setmetatable(instance, self)
+  return instance
 end
 
-function couch_model:push_back()
-  self.pulled = true
+---@param model CouchModel
+function couch_model.pull(model)
+  model.pulled = true
 end
 
-function couch_model:push()
-  self.pulled = false
+---@param model CouchModel
+function couch_model.push(model)
+  model.pulled = false
 end
 
 ---@class Couch: Obj
@@ -49,7 +51,7 @@ function couch:new(id, events)
           end
         end
         pn "Толкаю диван к стене."
-        model:push()
+        couch_model.push(model)
       else
         if events.on_pulled then
           local handled = events.on_pulled()
@@ -58,7 +60,7 @@ function couch:new(id, events)
           end
         end
         pn "Отодвигаю диван от стены."
-        model:push_back()
+        couch_model.pull(model)
       end
     end
   }
