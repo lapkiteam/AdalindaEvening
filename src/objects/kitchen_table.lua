@@ -5,23 +5,21 @@ obj {
   nam = ids.kitchen_table.id,
   disp = "Кухонный стол",
   dsc = function (this)
-    -- local bowl = ids.bowl:get()
-    -- local salad = ids.salad:get()
-
-    if not empty(this) then
-      p "На {кухонном столе} стоит: "
+    local objs_length = #this.obj
+    if objs_length == 1 then
+      return "На {столе} лежит "..utils.to_interact(this.obj[1]).."."
+    elseif objs_length > 1 then
+      pr "На {столе} лежат: "
+      ---@type string[]
+      local name_objs = {}
       this:for_each(function (obj)
-        p (utils.to_interact(obj)..",")
+        table.insert(name_objs, utils.to_interact(obj))
       end)
-      p "."
+      pr(table.concat(name_objs, ", "))
+      pr "."
       return
-      -- if utils.has(this, bowl) then
-      --   return utils.to_interact(bowl).." стоит ."
-      -- elseif utils.has(this, salad) then
-      --   return "{"..salad.nam.."|Готовый салатик} стоит на {кухонном столе}."
-      -- end
     end
-    return "{Кухонный стол}."
+    return "Пустой {стол} стоит рядом с окном."
   end,
   act = "Он слегка грязный, но я все равно его люблю таким, какой он есть.",
 }:with {
