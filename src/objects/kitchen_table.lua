@@ -5,16 +5,18 @@ obj {
   nam = ids.kitchen_table.id,
   disp = "Кухонный стол",
   dsc = function (this)
-    local objs_length = #this.obj
+    local objs = this.obj
+    local objs_length = #objs
     if objs_length == 1 then
       return "На {столе} лежит "..utils.to_interact(this.obj[1]).."."
     elseif objs_length > 1 then
-      pr "На {столе} лежат: "
+      pr ("На {столе} лежат: ")
       ---@type string[]
       local name_objs = {}
-      this:for_each(function (obj)
+      for i = 1, objs_length, 1 do
+        local obj = objs[i]
         table.insert(name_objs, utils.to_interact(obj))
-      end)
+      end
       pr(table.concat(name_objs, ", "))
       pr "."
       return

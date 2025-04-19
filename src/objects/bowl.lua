@@ -12,24 +12,23 @@ obj {
   disp = "Тазик",
   act = function (this)
     if not empty(this) then
-      p "В тазике есть: "
+      pr "В тазике есть: "
+      ---@type string[]
+      local name_objs = {}
       this:for_each(function (o)
-        p(o.disp)
+        table.insert(name_objs, utils.to_lower_first_char(o.disp))
       end)
+      pr (table.concat(name_objs, ", "))
+      pr "."
       return
     end
     pn "Знакомьтесь, это — тазик."
-  end,
-  dsc = function (this)
-    local canned_peas = ids.canned_peas:get()
-    if utils.has(this, canned_peas) then
-      pn "В тазике есть горошек"
-    end
   end,
   used = function(this, another)
     local function exec()
       place(another, this)
       if test_salad_ready(this) then
+        pn "Получается салатик!"
         this:remove()
         local kitchen_table = ids.kitchen_table:get()
         local salad = ids.salad:get()

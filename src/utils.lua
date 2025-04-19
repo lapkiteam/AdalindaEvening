@@ -27,4 +27,5 @@ end
 return {
   has = has,
   to_interact = to_interact,
+  to_lower_first_char = to_lower_first_char,
 }
