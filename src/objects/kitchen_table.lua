@@ -7,19 +7,12 @@ obj {
   dsc = function (this)
     local objs = this.obj
     local objs_length = #objs
-    if objs_length == 1 then
-      return "На {столе} лежит "..utils.to_interact(this.obj[1]).."."
-    elseif objs_length > 1 then
-      pr ("На {столе} лежат: ")
-      ---@type string[]
-      local name_objs = {}
-      for i = 1, objs_length, 1 do
-        local obj = objs[i]
-        table.insert(name_objs, utils.to_interact(obj))
+    if objs_length > 0 then
+      if utils.has(this, ids.bowl.id) then
+        return "На {столе} стоит {"..ids.bowl.id.."|тазик}."
+      else
+        return "{Стол} стоит рядом с окном."
       end
-      pr(table.concat(name_objs, ", "))
-      pr "."
-      return
     end
     return "Пустой {стол} стоит рядом с окном."
   end,

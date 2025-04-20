@@ -3,6 +3,15 @@ local ids = require "ids"
 obj {
   nam = ids.salad.id,
   disp = "Салатик",
+  dsc = function (this)
+    local where = this:where()
+    if where.nam == ids.kitchen_table.id then
+      return "С краю стола расположен {вожделенный салатик}."
+    elseif where.nam == ids.salad_place.id then
+      return false
+    end
+    return "На полу валяется {салатик}."
+  end,
   act = function (this)
     local salad_place = ids.salad_place:get()
     if this:where() == salad_place then

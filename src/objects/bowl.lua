@@ -27,6 +27,13 @@ obj {
     end
     pn "Знакомьтесь, это — тазик."
   end,
+  dsc = function (this)
+    local where = this:where()
+    if where.nam == ids.kitchen_table.id then
+      return false
+    end
+    return "На полу валяется {тазик}."
+  end,
   used = function(this, another)
     local function exec()
       place(another, this)

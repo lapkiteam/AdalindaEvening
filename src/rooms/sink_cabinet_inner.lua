@@ -7,21 +7,9 @@ room {
   decor = function (this)
     local objs = this.obj --[[@as Obj[] ]]
     local objs_length = #objs
-    if objs_length == 1 then
-      return "Внутри лежит "..utils.to_interact(objs[1]).."."
-    elseif objs_length > 1 then
-      pr ("Внутри лежат: ")
-      ---@type string[]
-      local name_objs = {}
-      for i = 1, objs_length, 1 do
-        local obj = objs[i]
-        table.insert(name_objs, utils.to_interact(obj))
-      end
-      pr(table.concat(name_objs, ", "))
-      pr "."
-      return
+    if objs_length == 0 then
+      return "Внутри пусто."
     end
-    return "Внутри пусто."
   end,
   way = {
     path {
