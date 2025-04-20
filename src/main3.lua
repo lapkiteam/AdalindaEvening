@@ -17,6 +17,7 @@ require "objects.salad"
 require "objects.sausage"
 require "objects.potato"
 require "objects.eggs"
+require "objects.mayo"
 -- rooms
 require "rooms.kitchen"
 require "rooms.hall"

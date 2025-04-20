@@ -7,6 +7,7 @@ local function test_salad_ready(bowl)
     and utils.has(bowl, ids.canned_peas.id)
     and utils.has(bowl, ids.potato.id)
     and utils.has(bowl, ids.eggs.id)
+    and utils.has(bowl, ids.mayo.id)
 end
 
 obj {
@@ -55,6 +56,10 @@ obj {
       return true
     elseif another.nam == ids.eggs.id then
       pn "Яйца улетают в тазик."
+      exec()
+      return true
+    elseif another.nam == ids.mayo.id then
+      pn "Майонез с неприличными звуками просачивается в тазик."
       exec()
       return true
     end

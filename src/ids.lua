@@ -49,6 +49,7 @@ local ids = {
   canned_peas = obj_getter:new("canned_peas"),
   potato = obj_getter:new("potato"),
   eggs = obj_getter:new("eggs"),
+  mayo = obj_getter:new("mayo"),
   -- rooms
   hall = room_getter:new("hall"),
   the_end = room_getter:new("the_end"),
