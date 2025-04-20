@@ -30,4 +30,5 @@ obj {
   ids.cucumbers.id,
   ids.canned_peas.id,
   ids.potato.id,
+  ids.eggs.id,
 }
