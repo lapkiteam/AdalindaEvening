@@ -2,4 +2,5 @@
   "Lua.workspace.library": [
     "e:/ProjectGit/instead-lua-definitions/library",
   ],
+  "Lua.runtime.version": "Lua 5.2",
 }
