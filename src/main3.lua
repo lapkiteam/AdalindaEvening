@@ -18,9 +18,13 @@ require "objects.sausage"
 require "objects.potato"
 require "objects.eggs"
 require "objects.mayo"
+require "objects.fridge"
+require "objects.sink_cabinet"
 -- rooms
 require "rooms.kitchen"
 require "rooms.hall"
+require "rooms.fridge_inner"
+require "rooms.sink_cabinet_inner"
 require "rooms.the_end"
 
 fmt.para = true
