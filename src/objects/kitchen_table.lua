@@ -29,4 +29,5 @@ obj {
   ids.sausage.id,
   ids.cucumbers.id,
   ids.canned_peas.id,
+  ids.potato.id,
 }
