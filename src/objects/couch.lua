@@ -29,6 +29,7 @@ local couch = std.class({}, obj)
 ---@return Couch
 function couch:new(id, events)
   local instance = obj {
+    nam = id,
     disp = "Диванчик",
     state = couch_model:new(),
     dsc = function (this)

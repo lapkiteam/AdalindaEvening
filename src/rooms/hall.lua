@@ -4,6 +4,9 @@ local couch = require "objects.couch"
 room {
   nam = ids.hall.id,
   disp = "Зал",
+  way = {
+    path { "На кухню", ids.kitchen.id }
+  },
 }:with {
   obj {
     disp = "Телевизер",

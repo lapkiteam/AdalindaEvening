@@ -11,6 +11,14 @@ obj {
       pn "Обычный салатик."
     end
   end,
+  tak = function (this)
+    local salad_place = ids.salad_place:get()
+    if this:where() == salad_place then
+      return false
+    end
+    pn "Беру салатик."
+    return true
+  end,
   inv = function ()
     pn "Ну-у, это салат."
   end,

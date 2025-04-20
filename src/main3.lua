@@ -7,9 +7,19 @@
 require "fmt"
 local ids = require "ids"
 -- objects
-require "objects.salad"
+require "objects.bowl"
+require "objects.canned_peas"
+require "objects.cucumbers"
+require "objects.kitchen_table"
+require "objects.recipe"
 require "objects.salad_place"
+require "objects.salad"
+require "objects.sausage"
+require "objects.potato"
+require "objects.eggs"
+require "objects.mayo"
 -- rooms
+require "rooms.kitchen"
 require "rooms.hall"
 require "rooms.the_end"
 
@@ -20,6 +30,5 @@ game.use = "Это не поможет."
 game.inv = "Зачем мне это?"
 
 function init()
-  take(ids.salad:get())
   walk(ids.hall:get())
 end
