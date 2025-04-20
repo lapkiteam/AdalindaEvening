@@ -51,11 +51,13 @@ local ids = {
   eggs = obj_getter:new("eggs"),
   mayo = obj_getter:new("mayo"),
   fridge = obj_getter:new("fridge"),
+  sink_cabinet = obj_getter:new("sink_cabinet"),
   -- rooms
   hall = room_getter:new("hall"),
   the_end = room_getter:new("the_end"),
   kitchen = room_getter:new("кухня"),
   fridge_inner = room_getter:new("fridge_inner"),
+  sink_cabinet_inner = room_getter:new("sink_cabinet_inner"),
 }
 
 return ids

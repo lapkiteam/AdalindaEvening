@@ -26,6 +26,4 @@ obj {
   act = "Он слегка грязный, но я все равно его люблю таким, какой он есть.",
 }:with {
   ids.bowl.id,
-  ids.canned_peas.id,
-  ids.potato.id,
 }
