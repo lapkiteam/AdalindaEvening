@@ -29,4 +29,12 @@
     * сварить [мытую картошку](./items/potato.md) на [плите](./locations/kitchen/decors/stove.md)
       * помыть [пакет с картошкой](./items/potato.md) в [раковине](./locations/kitchen/decors/sink.md)
         * взять [пакет с картошкой](./items/potato.md) в [шкафчике под раковиной](./locations/kitchen/decors/sink-cabinet.md)
-    * [добыть нож]()
+    * [добыть нож](#добыть-нож)
+
+## добыть нож
+
+* взять [нож](./items/knife.md) с [фотографии бывшего](./locations/hall/decors/photo-ex-boyfriend.md) в [комнате](./locations/hall/index.md)
+
+<!-- todo: нунчаки — прогнать бывашего, который пришел за огурцами — вы не можете смотреть <<Кошку в 16>>, когда рядом враги
+Стоит в коридоре и не заходит, потому что болтает со своей новой подругой по телефону.
+-->
