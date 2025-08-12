@@ -19,5 +19,14 @@
   * взять [пачку майонеза](./items/mayo.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
 * вкинуть [банку с горошком](./items/canned-peas.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
   * взять [банку с горошком](./items/canned-peas.md) в [шкафчике под раковиной](./locations/kitchen/decors/sink-cabinet.md)
-* вкинуть [пакет с картошкой](./items/potato.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
-  * взять [пакет с картошкой](./items/potato.md) в [шкафчике под раковиной](./locations/kitchen/decors/sink-cabinet.md)
+* вкинуть [нарезанную картошку](./items/potato.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
+  * [приготовить картошку](#приготовить-картошку)
+
+## приготовить картошку
+
+* нарезать [ножом](./items/knife.md) [почищенную картошку](./items/potato.md) <!-- todo: добавить разделочную доску -->
+  * почистить [ножом](./items/knife.md) [сваренную картошку](./items/potato.md)
+    * сварить [мытую картошку](./items/potato.md) на [плите](./locations/kitchen/decors/stove.md)
+      * помыть [пакет с картошкой](./items/potato.md) в [раковине](./locations/kitchen/decors/sink.md)
+        * взять [пакет с картошкой](./items/potato.md) в [шкафчике под раковиной](./locations/kitchen/decors/sink-cabinet.md)
+    * [добыть нож]()
