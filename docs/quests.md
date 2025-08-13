@@ -39,4 +39,19 @@
 ## победить бывшего
 
 * побить [огуречными нунчаками](./items/cucumber-nunchucks.md) [бывшего](./characters/ex-boyfriend.md) в [коридоре](./locations/corridor.md)
-  * [сделать огуречные нунчаки]()
+  * [сделать огуречные нунчаки](#сделать-огуречные-нунчаки)
+
+## сделать огуречные нунчаки
+
+* Привязать [цепочку](./items/chain.md) к [огурцу](./items/cucumbers.md) со [штопором](./items/corkscrew.md)
+  * Вкрутить [штопор](./items/corkscrew.md) в [огурец](./items/cucumbers.md)
+    * взять [штопор](./items/corkscrew.md) на верху [холодильника](./locations/kitchen/decors/fridge.md)
+  * [найти цепочку](#найти-цепочку)
+* Привязать [цепочку](./items/chain.md) к [огурцу](./items/cucumbers.md) с [макарожкой](./items/fusilli.md)
+  * Вкрутить [макарожку](./items/fusilli.md) в [огурец](./items/cucumbers.md)
+    * взять [макарожку](./items/fusilli.md) в [шкафчик под раковиной](./locations/kitchen/decors/sink-cabinet.md)
+  * [найти цепочку](#найти-цепочку)
+
+## найти цепочку
+
+* взять [цепочку](./items/chain.md) на [ручке окна](./locations/kitchen/decors/window-handle.md) на [кухне](./locations/kitchen/index.md)
