@@ -41,6 +41,10 @@
       * взять [открывалку](./items/can-opener.md) на [холодильнике](./locations/kitchen/decors/fridge.md)
 * вкинуть [нарезанную картошку](./items/potato.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
   * [приготовить картошку](#приготовить-картошку)
+* поперчить [перечницей](./items/pepper-shaker.md) [тазик](./locations/kitchen/decors/bowl.md)
+  * взять [перечницу](./items/pepper-shaker.md) в [навесном шкафчике](./locations/kitchen/decors/wall-cabinet.md)
+* посолить [солонкой](./items/salt-shaker.md) [тазик](./locations/kitchen/decors/bowl.md)
+  * взять [солонку](./items/salt-shaker.md) в [навесном шкафчике](./locations/kitchen/decors/wall-cabinet.md)
 
 ## приготовить картошку
 
