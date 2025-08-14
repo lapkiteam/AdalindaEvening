@@ -3,7 +3,7 @@
 * сесть на [диванчик](./locations/hall/decors/couch.md) в [зале](./locations/hall/index.md)
   * задвинуть [диванчик](./locations/hall/decors/couch.md) в [зале](./locations/hall/index.md)
     * уронить [салат](./items/salad.md) за [диванчик](./locations/hall/decors/couch.md) в [зале](./locations/hall/index.md)
-      * отодвинуть [диванчик](./locations/hall/decors/couch.md) в [зале](./locations/hall/index.md)
+      * отодвинуть [диванчик](./locatio1ns/hall/decors/couch.md) в [зале](./locations/hall/index.md)
         * взять [салат](./items/salad.md) со стола на [кухне](./locations/kitchen/index.md)
           * [сделать салат](#сделать-салат)
 
