@@ -17,10 +17,11 @@
     * [приготовить разделочную доску](#приготовить-разделочную-доску)
 <!-- todo: переименовать огурцы в огурец -->
 * вкинуть [огурцы](./items/cucumbers.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
-  <!-- todo: порезать огурцы -->
-  * положить [огурцы](./items/cucumbers.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
-    * взять [огурцы](./items/cucumbers.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
-    * [приготовить разделочную доску](#приготовить-разделочную-доску)
+  * порезать [ножом](./items/knife.md) [огурцы](./items/cucumbers.md) на [разделочной доске](./items/cutting-board.md)
+    * положить [огурцы](./items/cucumbers.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
+      * взять [огурцы](./items/cucumbers.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
+      * [приготовить разделочную доску](#приготовить-разделочную-доску)
+    * [добыть нож](#добыть-нож)
 * вкинуть [яйца](./items/eggs.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
   * порезать [ножом](./items/knife.md) [очищенные яйца](./items/eggs.md) на [разделочной доске](./items/cutting-board.md)
     * положить [очищенные яйца](./items/eggs.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
