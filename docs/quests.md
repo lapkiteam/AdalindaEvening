@@ -11,10 +11,11 @@
 ## Сделать салат
 
 * вкинуть [кубики колбасы](./items/sausage.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
-  <!-- todo: порезать ножом палку колбасы -->
-  * положить [палку колбасы](./items/potato.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
-    * взять [палку колбасы](./items/sausage.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
-    * [приготовить разделочную доску](#приготовить-разделочную-доску)
+  * порезать [ножом](./items/knife.md) [палку колбасы](./items/potato.md) на [разделочной доске](./items/cutting-board.md)
+    * положить [палку колбасы](./items/potato.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
+      * взять [палку колбасы](./items/sausage.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
+      * [приготовить разделочную доску](#приготовить-разделочную-доску)
+    * [добыть нож](#добыть-нож)
 <!-- todo: переименовать огурцы в огурец -->
 * вкинуть [огурцы](./items/cucumbers.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
   * порезать [ножом](./items/knife.md) [огурцы](./items/cucumbers.md) на [разделочной доске](./items/cutting-board.md)
