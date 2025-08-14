@@ -14,8 +14,11 @@
   * положить [палку колбасы](./items/potato.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
     * взять [палку колбасы](./items/sausage.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
     * [приготовить разделочную доску](#приготовить-разделочную-доску)
+<!-- todo: переименовать огурцы в огурец -->
 * вкинуть [огурцы](./items/cucumbers.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
-  * взять [огурцы](./items/cucumbers.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
+  * положить [огурцы](./items/cucumbers.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
+    * взять [огурцы](./items/cucumbers.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
+    * [приготовить разделочную доску](#приготовить-разделочную-доску)
 * вкинуть [яйца](./items/eggs.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
   * взять [яйца](./items/eggs.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
 * вкинуть [пачку майонеза](./items/mayo.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
