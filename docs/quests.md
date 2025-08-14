@@ -10,8 +10,10 @@
 
 ## Сделать салат
 
-* вкинуть [палку колбасы](./items/sausage.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
-  * взять [палку колбасы](./items/sausage.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
+* вкинуть [кубики колбасы](./items/sausage.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
+  * положить [палку колбасы](./items/potato.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
+    * взять [палку колбасы](./items/sausage.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
+    * [приготовить разделочную доску](#приготовить-разделочную-доску)
 * вкинуть [огурцы](./items/cucumbers.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
   * взять [огурцы](./items/cucumbers.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
 * вкинуть [яйца](./items/eggs.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
