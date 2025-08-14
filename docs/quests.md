@@ -23,8 +23,11 @@
   * взять [яйца](./items/eggs.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
 * вкинуть [пачку майонеза](./items/mayo.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
   * взять [пачку майонеза](./items/mayo.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
-* вкинуть [банку с горошком](./items/canned-peas.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
-  * взять [банку с горошком](./items/canned-peas.md) в [шкафчике под раковиной](./locations/kitchen/decors/sink-cabinet.md)
+* вкинуть [банку с сухим горошком](./items/canned-peas.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
+  * слить воду с [открытой банки мокрого горошка](./items/canned-peas.md) в [раковину](./locations/kitchen/decors/sink.md)
+    * вскрыть [открывалкой](./items/can-opener.md) [банку горошка](./items/canned-peas.md)
+      * взять [банку с горошком](./items/canned-peas.md) в [шкафчике под раковиной](./locations/kitchen/decors/sink-cabinet.md)
+      * взять [открывалку](./items/can-opener.md) на [холодильнике](./locations/kitchen/decors/fridge.md)
 * вкинуть [нарезанную картошку](./items/potato.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
   * [приготовить картошку](#приготовить-картошку)
 
