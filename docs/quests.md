@@ -25,12 +25,21 @@
 
 ## приготовить картошку
 
-* нарезать [ножом](./items/knife.md) [почищенную картошку](./items/potato.md) <!-- todo: добавить разделочную доску -->
-  * почистить [ножом](./items/knife.md) [сваренную картошку](./items/potato.md)
-    * сварить [мытую картошку](./items/potato.md) на [плите](./locations/kitchen/decors/stove.md)
-      * помыть [пакет с картошкой](./items/potato.md) в [раковине](./locations/kitchen/decors/sink.md)
-        * взять [пакет с картошкой](./items/potato.md) в [шкафчике под раковиной](./locations/kitchen/decors/sink-cabinet.md)
-    * [добыть нож](#добыть-нож)
+* нарезать [ножом](./items/knife.md) [почищенную картошку](./items/potato.md)
+  * положить [сваренную картошку](./items/potato.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
+    * почистить [ножом](./items/knife.md) [сваренную картошку](./items/potato.md)
+      * сварить [мытую картошку](./items/potato.md) на [плите](./locations/kitchen/decors/stove.md)
+        * помыть [пакет с картошкой](./items/potato.md) в [раковине](./locations/kitchen/decors/sink.md)
+          * взять [пакет с картошкой](./items/potato.md) в [шкафчике под раковиной](./locations/kitchen/decors/sink-cabinet.md)
+      * [добыть нож](#добыть-нож)
+    * [приготовить разделочную доску](#приготовить-разделочную-доску)
+
+## приготовить разделочную доску
+
+* положить [разделочную доску](./items/cutting-board.md) на [стол](./locations/kitchen/decors/table.md)
+  * взять [разделочную доску](./items/cutting-board.md) за [отодвинутым диваном](./locations/hall/decors/couch.md)
+    * убрать [пипидастром](./items/pp-duster.md) [паутину](./locations/hall/decors/web.md) за [отодвинутым диваном](./locations/hall/decors/couch.md)
+      * взять [пипидастр](./items/pp-duster.md) на [гвоздике](./locations/corridor/decors/nail.md) в [коридоре](./locations/corridor/index.md)
 
 ## добыть нож
 
@@ -38,7 +47,7 @@
 
 ## победить бывшего
 
-* побить [огуречными нунчаками](./items/cucumber-nunchucks.md) [бывшего](./characters/ex-boyfriend.md) в [коридоре](./locations/corridor.md)
+* побить [огуречными нунчаками](./items/cucumber-nunchucks.md) [бывшего](./characters/ex-boyfriend.md) в [коридоре](./locations/corridor/index.md)
   * [сделать огуречные нунчаки](#сделать-огуречные-нунчаки)
 
 ## сделать огуречные нунчаки
