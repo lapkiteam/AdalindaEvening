@@ -18,11 +18,10 @@
         * взять [палку колбасы](./items/sausage.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
         * [приготовить разделочную доску](#приготовить-разделочную-доску)
       * [добыть нож](#добыть-нож)
-  <!-- todo: переименовать огурцы в огурец -->
-  * вкинуть [огурцы](./items/cucumbers.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
-    * порезать [ножом](./items/knife.md) [огурцы](./items/cucumbers.md) на [разделочной доске](./items/cutting-board.md)
-      * положить [огурцы](./items/cucumbers.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
-        * взять [огурцы](./items/cucumbers.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
+  * вкинуть [огурец](./items/cucumber.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
+    * порезать [ножом](./items/knife.md) [огурец](./items/cucumber.md) на [разделочной доске](./items/cutting-board.md)
+      * положить [огурец](./items/cucumber.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
+        * взять [огурец](./items/cucumber.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
         * [приготовить разделочную доску](#приготовить-разделочную-доску)
       * [добыть нож](#добыть-нож)
   * вкинуть [яйца](./items/eggs.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
@@ -77,12 +76,12 @@
 
 ## сделать огуречные нунчаки
 
-* Привязать [цепочку](./items/chain.md) к [огурцу](./items/cucumbers.md) со [штопором](./items/corkscrew.md)
-  * Вкрутить [штопор](./items/corkscrew.md) в [огурец](./items/cucumbers.md)
+* Привязать [цепочку](./items/chain.md) к [огурцу](./items/cucumber.md) со [штопором](./items/corkscrew.md)
+  * Вкрутить [штопор](./items/corkscrew.md) в [огурец](./items/cucumber.md)
     * взять [штопор](./items/corkscrew.md) на верху [холодильника](./locations/kitchen/decors/fridge.md)
   * [найти цепочку](#найти-цепочку)
-* Привязать [цепочку](./items/chain.md) к [огурцу](./items/cucumbers.md) с [макарожкой](./items/fusilli.md)
-  * Вкрутить [макарожку](./items/fusilli.md) в [огурец](./items/cucumbers.md)
+* Привязать [цепочку](./items/chain.md) к [огурцу](./items/cucumber.md) с [макарожкой](./items/fusilli.md)
+  * Вкрутить [макарожку](./items/fusilli.md) в [огурец](./items/cucumber.md)
     * взять [макарожку](./items/fusilli.md) в [шкафчик под раковиной](./locations/kitchen/decors/sink-cabinet.md)
   * [найти цепочку](#найти-цепочку)
 
