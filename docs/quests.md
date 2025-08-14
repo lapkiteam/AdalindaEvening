@@ -11,16 +11,25 @@
 ## Сделать салат
 
 * вкинуть [кубики колбасы](./items/sausage.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
+  <!-- todo: порезать ножом палку колбасы -->
   * положить [палку колбасы](./items/potato.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
     * взять [палку колбасы](./items/sausage.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
     * [приготовить разделочную доску](#приготовить-разделочную-доску)
 <!-- todo: переименовать огурцы в огурец -->
 * вкинуть [огурцы](./items/cucumbers.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
+  <!-- todo: порезать огурцы -->
   * положить [огурцы](./items/cucumbers.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
     * взять [огурцы](./items/cucumbers.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
     * [приготовить разделочную доску](#приготовить-разделочную-доску)
 * вкинуть [яйца](./items/eggs.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
-  * взять [яйца](./items/eggs.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
+  * порезать [ножом](./items/knife.md) [очищенные яйца](./items/eggs.md) на [разделочной доске](./items/cutting-board.md)
+    * положить [очищенные яйца](./items/eggs.md) на [разделочную доску](./items/cutting-board.md) на [кухне](./locations/kitchen/index.md)
+      * почистить [сваренные яйца](./items/eggs.md)
+        * остудить [горячие сваренные яйца](./items/eggs.md) в [раковине](./locations/kitchen/decors/sink.md)
+          * сварить [яйца](./items/eggs.md) на [плите](./locations/kitchen/decors/stove.md)
+            * взять [яйца](./items/eggs.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
+      * [приготовить разделочную доску](#приготовить-разделочную-доску)
+  * [добыть нож](#добыть-нож)
 * вкинуть [пачку майонеза](./items/mayo.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
   * взять [пачку майонеза](./items/mayo.md) в [холодильнике](./locations/kitchen/decors/fridge.md)
 * вкинуть [банку с сухим горошком](./items/canned-peas.md) в [тазик](./locations/kitchen/decors/bowl.md) на [кухне](./locations/kitchen/index.md)
