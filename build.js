@@ -1,7 +1,7 @@
 // @ts-check
 import { get } from "https"
 import { existsSync, mkdirSync, createWriteStream, unlink, rmSync } from "fs"
-import { basename, join } from "path"
+import { dirname, join } from "path"
 import AdmZip from "adm-zip"
 
 /**
@@ -11,7 +11,7 @@ import AdmZip from "adm-zip"
  */
 function download(url, outputPath) {
   return new Promise((resolve, reject) => {
-    const outputDir = basename(outputPath)
+    const outputDir = dirname(outputPath)
     if (!existsSync(outputDir)) {
       mkdirSync(outputDir, { recursive: true })
     }
