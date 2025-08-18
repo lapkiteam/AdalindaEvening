@@ -45,6 +45,10 @@ function download(url, outputPath) {
   })
 }
 
+/**
+ * @param {string | Buffer} zipFilePath
+ * @param {string} outputDir
+ */
 function unZip(zipFilePath, outputDir) {
   const zip = new AdmZip(zipFilePath)
   zip.extractAllTo(outputDir, true)
