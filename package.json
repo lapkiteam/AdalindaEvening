@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "postinstall": "node build.js",
     "start": "vite",
     "clean": "shx rm -rf dist/",
     "build": "shx cp -r public/ dist/ && shx cp -r src/* dist/games/adalinda-evening && cp index.html dist/index.html",
@@ -13,6 +14,7 @@
     "docs:check-links": "markdown-link-check -q docs"
   },
   "devDependencies": {
+    "adm-zip": "^0.5.16",
     "markdown-link-check": "^3.13.7",
     "rollup": "~4.14.1",
     "shx": "^0.3.4",
