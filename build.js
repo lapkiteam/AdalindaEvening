@@ -1,6 +1,6 @@
 // @ts-check
 import { get } from "https"
-import { existsSync, mkdirSync, createWriteStream, unlink, rmSync } from "fs"
+import { existsSync, mkdirSync, createWriteStream, unlink, rmSync, writeFileSync } from "fs"
 import { dirname, join } from "path"
 import AdmZip from "adm-zip"
 
@@ -54,6 +54,37 @@ function unZip(zipFilePath, outputDir) {
   zip.extractAllTo(outputDir, true)
 }
 
+function addStartupScripts() {
+  const binPath = "node_modules/.bin"
+  const bashScript = `#!/bin/sh
+basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+
+case \`uname\` in
+    *CYGWIN*|*MINGW*|*MSYS*)
+        if command -v cygpath > /dev/null 2>&1; then
+            basedir=\`cygpath -w "$basedir"\`
+        fi
+    ;;
+esac
+
+exec "$basedir/../instead-cli-v1.7-a0f1e04/instead-cli" "$@"
+`
+  writeFileSync(join(binPath, "instead-cli"), bashScript)
+
+  const cmdScript = `@ECHO off
+GOTO start
+:find_dp0
+SET dp0=%~dp0
+EXIT /b
+:start
+SETLOCAL
+CALL :find_dp0
+
+endLocal & "%dp0%\\..\\instead-cli-v1.7-a0f1e04\\instead-cli.exe" %*
+`
+  writeFileSync(join(binPath, "instead-cli.cmd"), cmdScript)
+}
+
 function installIsteadCli() {
   const url = "https://github.com/gretmn102/instead-cli/releases/download/v1.7-a0f1e04/instead-cli-v1.7-a0f1e04.zip"
   const outputDir = "node_modules"
@@ -66,6 +97,10 @@ function installIsteadCli() {
       console.log(`Архив распакован в ${outputDir}`)
       rmSync(zipFilePath)
       console.log(`Файл ${zipFilePath} удален`)
+    })
+    .then(() => {
+      addStartupScripts()
+      console.log("Startup scripts are written in the `node_modules/.bin` folder.")
     })
     .catch(errorMessage => {
       console.error(`download error: ${errorMessage}`)
