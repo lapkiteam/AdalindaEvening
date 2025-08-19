@@ -2,7 +2,7 @@
 import { spawn } from "node:child_process"
 import { dirname, join, resolve } from "node:path"
 import { platform } from "node:os"
-import { diffChars, diffLines } from "diff"
+import { diffChars } from "diff"
 import { fileURLToPath } from "url"
 import "colors"
 
@@ -59,33 +59,36 @@ const insteadCliPath = (() => {
  * @param {string} commandsPath
  * @param {string} expected
  */
-function runTest(gameFolder, commandsPath, expected) {
-  runCommand(
-    insteadCliPath,
-    ["-cp65001", `-i${commandsPath}`, "-e", "-d", gameFolder]
-  ).then(result => {
-    const diff = diffChars(expected, result.output)
+async function runTest(gameFolder, commandsPath, expected) {
+  let result
+  try {
+    result = await runCommand(
+      insteadCliPath,
+      ["-cp65001", `-i${commandsPath}`, "-e", "-d", gameFolder]
+    )
+  } catch(e) {
+    throw new Error(e.output)
+  }
 
-    if (diff.length > 0) {
-      diff.forEach((part) => {
-        // green for additions, red for deletions
-        let text = part.added ? part.value.green :
-                   part.removed ? part.value.red :
-                                  part.value.grey
-        process.stderr.write(text)
-      })
-      // throw undefined
-    }
-  }).catch(err => {
-    console.error("Error: ", err.output)
-  })
+  if (expected !== result.output) {
+    const diff = diffChars(expected, result.output)
+    diff.forEach((part) => {
+      // green for additions, red for deletions
+      let text = part.added ? part.value.green :
+                 part.removed ? part.value.red :
+                                part.value.grey
+      process.stderr.write(text)
+    })
+    throw new Error("Not equal")
+  }
+  console.log("Test success!")
 }
 
 runTest(
   "src",
   "J:\\AdalindaEvening\\tests\\instead-cli-script",
   [
-    "Включен11ный телевизор(1) стоит на тумбе. Любимый диванчик(2) стоит ",
+    "Включенный телевизор(1) стоит на тумбе. Любимый диванчик(2) стоит ",
     "возле стены.",
     "",
     "> /Отодвигаю диван от стены./",
@@ -96,5 +99,5 @@ runTest(
     "",
     "> ",
     "",
-  ].join("\n")
+  ].join("\r\n")
 )
