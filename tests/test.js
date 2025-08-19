@@ -45,7 +45,13 @@ const insteadCliPath = (() => {
 function insteadCliRun(commandsFilePath, gameFolderPath) {
   return runCommand(
     insteadCliPath,
-    ["-cp65001", `-i${commandsFilePath}`, "-e", "-d", gameFolderPath]
+    [
+      platform() === "win32" ? "-cp65001" : "",
+      `-i${commandsFilePath}`,
+      "-e",
+      "-d",
+      gameFolderPath,
+    ]
   )
 }
 
