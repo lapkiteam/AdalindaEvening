@@ -56,6 +56,13 @@ const insteadCliPath = (() => {
   )
 })()
 
+function insteadCliRun(commandsFilePath, gameFolderPath) {
+  return runCommand(
+    insteadCliPath,
+    ["-cp65001", `-i${commandsFilePath}`, "-e", "-d", gameFolderPath]
+  )
+}
+
 /**
  * @param {string} expected
  * @param {string} actual
@@ -90,10 +97,7 @@ async function runTest(gameFolder, commands, expected) {
   writeFileSync(commandsFile.name, commands.join("\n"))
   let result
   try {
-    result = await runCommand(
-      insteadCliPath,
-      ["-cp65001", `-i${commandsFile.name}`, "-e", "-d", gameFolder]
-    )
+    result = await insteadCliRun(commandsFile.name, gameFolder)
   } catch(e) {
     throw new Error(e.output)
   }
