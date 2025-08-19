@@ -1,7 +1,7 @@
 // @ts-check
 import { get } from "https"
-import { existsSync, mkdirSync, createWriteStream, unlink, rmSync, writeFileSync } from "fs"
-import { dirname, join } from "path"
+import { existsSync, mkdirSync, createWriteStream, unlink, rmSync, writeFileSync, chmodSync } from "fs"
+import { dirname, join, resolve } from "path"
 import AdmZip from "adm-zip"
 
 /**
@@ -108,3 +108,5 @@ function installIsteadCli() {
 }
 
 installIsteadCli()
+
+chmodSync("node_modules/instead-cli-v1.7-a0f1e04/instead-cli", "001")
