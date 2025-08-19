@@ -1,8 +1,9 @@
 // @ts-check
 import { get } from "https"
-import { existsSync, mkdirSync, createWriteStream, unlink, rmSync, writeFileSync, chmod } from "fs"
+import { existsSync, mkdirSync, createWriteStream, unlink, rmSync, writeFileSync, chmod, cpSync } from "fs"
 import { dirname, join, resolve } from "path"
 import AdmZip from "adm-zip"
+import { platform } from "os"
 
 /**
  * @param {string} url
@@ -104,10 +105,16 @@ async function installIsteadCli() {
   rmSync(zipFilePath)
   console.log(`Файл ${zipFilePath} удален`)
 
+  const insteadDir = "node_modules/instead-cli-v1.7-a0f1e04"
+
+  if (platform() === "linux") { // fix: Can not init game: src (cannot open ./stead//stead3/stead.lua: No such file or directory)
+    cpSync(insteadDir, "stead", { recursive: true })
+  }
+
   let chmodResult
   try {
     chmodResult = await new Promise((resolve, reject) => {
-      chmod("node_modules/instead-cli-v1.7-a0f1e04/instead-cli", 0o755, (err) => {
+      chmod(join(insteadDir, "instead-cli"), 0o755, (err) => {
         if (err) {
           reject(`Ошибка при изменении прав: ${err}`)
           return
