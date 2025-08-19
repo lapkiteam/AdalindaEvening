@@ -95,6 +95,7 @@ function installIsteadCli() {
       console.log(`Архив ${url} скачан в ${zipFilePath}`)
       unZip(zipFilePath, outputDir)
       console.log(`Архив распакован в ${outputDir}`)
+      chmodSync("node_modules/instead-cli-v1.7-a0f1e04/instead-cli", "001")
       rmSync(zipFilePath)
       console.log(`Файл ${zipFilePath} удален`)
     })
@@ -108,5 +109,3 @@ function installIsteadCli() {
 }
 
 installIsteadCli()
-
-chmodSync("node_modules/instead-cli-v1.7-a0f1e04/instead-cli", "001")
