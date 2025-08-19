@@ -85,35 +85,43 @@ endLocal & "%dp0%\\..\\instead-cli-v1.7-a0f1e04\\instead-cli.exe" %*
   writeFileSync(join(binPath, "instead-cli.cmd"), cmdScript)
 }
 
-function installIsteadCli() {
+async function installIsteadCli() {
   const url = "https://github.com/gretmn102/instead-cli/releases/download/v1.7-a0f1e04/instead-cli-v1.7-a0f1e04.zip"
   const outputDir = "node_modules"
   const zipFileName = "release.zip"
   const zipFilePath = join(outputDir, zipFileName)
-  download(url, zipFilePath)
-    .then(() => {
-      console.log(`Архив ${url} скачан в ${zipFilePath}`)
-      unZip(zipFilePath, outputDir)
-      console.log(`Архив распакован в ${outputDir}`)
-      rmSync(zipFilePath)
-      console.log(`Файл ${zipFilePath} удален`)
-    })
-    .then(() => {
+
+  try {
+    await download(url, zipFilePath)
+  } catch(e) {
+    console.error(`download error: ${e}`)
+    throw new Error(e)
+  }
+
+  console.log(`Архив ${url} скачан в ${zipFilePath}`)
+  unZip(zipFilePath, outputDir)
+  console.log(`Архив распакован в ${outputDir}`)
+  rmSync(zipFilePath)
+  console.log(`Файл ${zipFilePath} удален`)
+
+  let chmodResult
+  try {
+    chmodResult = await new Promise((resolve, reject) => {
       chmod("node_modules/instead-cli-v1.7-a0f1e04/instead-cli", 0o755, (err) => {
         if (err) {
-          console.error('Ошибка при изменении прав:', err);
-        } else {
-          console.log('Права успешно изменены на u+x');
+          reject(`Ошибка при изменении прав: ${err}`)
+          return
         }
+        resolve("Права успешно изменены на u+x")
       })
     })
-    .then(() => {
-      addStartupScripts()
-      console.log("Startup scripts are written in the `node_modules/.bin` folder.")
-    })
-    .catch(errorMessage => {
-      console.error(`download error: ${errorMessage}`)
-    })
+  } catch(e) {
+    console.error(`download error: ${e}`)
+    throw new Error(e)
+  }
+
+  addStartupScripts()
+  console.log("Startup scripts are written in the `node_modules/.bin` folder.")
 }
 
 installIsteadCli()
