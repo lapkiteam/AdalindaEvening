@@ -85,7 +85,7 @@ async function runTest(gameFolder, commands, expected) {
   try {
     result = await insteadCliRun(commandsFile.name, gameFolder)
   } catch(e) {
-    throw new Error(e)
+    throw new Error(JSON.stringify(e))
   }
   console.log(result.rawCommand)
   const equalResult = equal(expected, result.stdout)
