@@ -55,6 +55,30 @@ const insteadCliPath = (() => {
 })()
 
 /**
+ * @param {string} expected
+ * @param {string} actual
+ * @return {{ case: "Ok" } | { case: "Error", data: string }}
+ */
+function equal(expected, actual) {
+  if (expected !== actual) {
+    const diff = diffChars(expected, actual)
+    const result = diff.map((part) => {
+      return part.added ? (
+        part.value.green
+      ) : (
+        part.removed ? (
+          part.value.red
+        ) : (
+          part.value.grey
+        )
+      )
+    }).join("")
+    return { case: "Error", data: result }
+  }
+  return { case: "Ok" }
+}
+
+/**
  * @param {string} gameFolder
  * @param {string} commandsPath
  * @param {string} expected
@@ -70,16 +94,9 @@ async function runTest(gameFolder, commandsPath, expected) {
     throw new Error(e.output)
   }
 
-  if (expected !== result.output) {
-    const diff = diffChars(expected, result.output)
-    diff.forEach((part) => {
-      // green for additions, red for deletions
-      let text = part.added ? part.value.green :
-                 part.removed ? part.value.red :
-                                part.value.grey
-      process.stderr.write(text)
-    })
-    throw new Error("Not equal")
+  const equalResult = equal(expected, result.output)
+  if (equalResult.case === "Error") {
+    throw new Error(equalResult.data)
   }
   console.log("Test success!")
 }
@@ -88,7 +105,7 @@ runTest(
   "src",
   "J:\\AdalindaEvening\\tests\\instead-cli-script",
   [
-    "Включенный телевизор(1) стоит на тумбе. Любимый диванчик(2) стоит ",
+    "Вклю1ченный телевизор(1) стоит на тумбе. Любимый диванчик(2) стоит ",
     "возле стены.",
     "",
     "> /Отодвигаю диван от стены./",
