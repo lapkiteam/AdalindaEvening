@@ -56,6 +56,10 @@ const insteadCliPath = (() => {
   )
 })()
 
+/**
+ * @param {string} commandsFilePath
+ * @param {string} gameFolderPath
+ */
 function insteadCliRun(commandsFilePath, gameFolderPath) {
   return runCommand(
     insteadCliPath,
