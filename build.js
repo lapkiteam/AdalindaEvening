@@ -108,7 +108,7 @@ async function installIsteadCli() {
   const insteadDir = "node_modules/instead-cli-v1.7-a0f1e04"
 
   if (platform() === "linux") { // fix: Can not init game: src (cannot open ./stead//stead3/stead.lua: No such file or directory)
-    cpSync(insteadDir, "stead", { recursive: true })
+    cpSync(`${insteadDir}/stead`, "stead", { recursive: true })
   }
 
   let chmodResult
