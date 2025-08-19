@@ -23,4 +23,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run test
-        run: npm test
+        run: |
+          ./node_modules/instead-cli-v1.7-a0f1e04/instead-cli src
+          echo ====
+          cd ./node_modules/instead-cli-v1.7-a0f1e04
+          ./instead-cli ../../src
+          echo ====
+          npm test
