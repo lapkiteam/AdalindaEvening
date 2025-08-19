@@ -15,6 +15,7 @@
     "docs:check-links": "markdown-link-check -q docs"
   },
   "devDependencies": {
+    "@fering-org/functional-helper": "^0.6.2",
     "adm-zip": "^0.5.16",
     "colors": "^1.4.0",
     "diff": "^8.0.2",

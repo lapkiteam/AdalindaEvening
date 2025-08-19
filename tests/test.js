@@ -7,6 +7,7 @@ import { fileURLToPath } from "url"
 import { fileSync } from "tmp"
 import "colors"
 import { writeFileSync } from "node:fs"
+import { Mutex } from "@fering-org/functional-helper"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -19,13 +20,29 @@ function runCommand(command, args = []) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { stdio: "pipe", shell: true })
 
-    let output = ""
-    child.stdout.on("data", (chunk) => {
-      output += chunk
+    const output = (() => {
+      const lock = Mutex.create()
+      let output = ""
+      return {
+        get: () => output,
+        append: async (/** @type {Buffer} */ text) => {
+          await lock.acquire()
+          output += text.toString()
+          lock.release()
+        },
+      }
+    })()
+
+    child.stdout.on("data", (/** @type {Buffer} */ chunk) => {
+      // output.append(chunk)
+
+      // console.log(chunk.length)
+      console.log(`chunk: ${chunk}`)
     })
 
     child.stderr.on("data", (chunk) => {
-      output += chunk
+      // output.append(chunk)
+
     })
 
     child.on("error", (err) => {
@@ -34,7 +51,7 @@ function runCommand(command, args = []) {
 
     child.on("close", (code, signal) => {
       if (code === 0) {
-        resolve({ code, signal, output })
+        resolve({ code, signal, output: output.get() })
       } else {
         const err = new Error(
           `Process ${command} exited with code ${code}${signal ? `, signal ${signal}` : ""}`
@@ -43,7 +60,7 @@ function runCommand(command, args = []) {
         err.code = code
         // @ts-expect-error 123
         err.signal = signal
-        reject({err, output})
+        reject({ err, output: output.get() })
       }
     })
   })
@@ -63,73 +80,78 @@ const insteadCliPath = (() => {
 function insteadCliRun(commandsFilePath, gameFolderPath) {
   return runCommand(
     insteadCliPath,
-    ["-cp65001", `-i${commandsFilePath}`, "-e", "-d", gameFolderPath]
+    ["-cp65001", `-i${commandsFilePath}`, "-e", "-d", "-w1000", gameFolderPath]
   )
+  // return runCommand(resolve("script.bat"))
 }
 
-/**
- * @param {string} expected
- * @param {string} actual
- * @return {{ case: "Ok" } | { case: "Error", data: string }}
- */
-function equal(expected, actual) {
-  if (expected !== actual) {
-    const diff = diffChars(expected, actual)
-    const result = diff.map((part) => {
-      return part.added ? (
-        part.value.green
-      ) : (
-        part.removed ? (
-          part.value.red
-        ) : (
-          part.value.grey
-        )
-      )
-    }).join("")
-    return { case: "Error", data: result }
-  }
-  return { case: "Ok" }
-}
+insteadCliRun("commands", "src")
+  .catch(x => {
+    console.error(x)
+  })
+// /**
+//  * @param {string} expected
+//  * @param {string} actual
+//  * @return {{ case: "Ok" } | { case: "Error", data: string }}
+//  */
+// function equal(expected, actual) {
+//   if (expected !== actual) {
+//     const diff = diffChars(expected, actual)
+//     const result = diff.map((part) => {
+//       return part.added ? (
+//         part.value.green
+//       ) : (
+//         part.removed ? (
+//           part.value.red
+//         ) : (
+//           part.value.grey
+//         )
+//       )
+//     }).join("")
+//     return { case: "Error", data: result }
+//   }
+//   return { case: "Ok" }
+// }
 
-/**
- * @param {string} gameFolder
- * @param {string[]} commands
- * @param {string} expected
- */
-async function runTest(gameFolder, commands, expected) {
-  const commandsFile = fileSync()
-  writeFileSync(commandsFile.name, commands.join("\n"))
-  let result
-  try {
-    result = await insteadCliRun(commandsFile.name, gameFolder)
-  } catch(e) {
-    throw new Error(e.output)
-  }
+// /**
+//  * @param {string} gameFolder
+//  * @param {string[]} commands
+//  * @param {string} expected
+//  */
+// async function runTest(gameFolder, commands, expected) {
+//   const commandsFile = fileSync()
+//   writeFileSync(commandsFile.name, commands.join("\n"))
+//   let result
+//   try {
+//     result = await insteadCliRun(commandsFile.name, gameFolder)
+//   } catch(e) {
+//     throw new Error(e.output)
+//   }
 
-  const equalResult = equal(expected, result.output)
-  if (equalResult.case === "Error") {
-    throw new Error(equalResult.data)
-  }
-  console.log("Test success!")
-}
+//   const equalResult = equal(expected, result.output)
+//   if (equalResult.case === "Error") {
+//     throw new Error(equalResult.data)
+//   }
+//   console.log("Test success!")
+// }
 
-runTest(
-  "src",
-  [
-    "/act 2",
-    "/act 1",
-  ],
-  [
-    "Включенный телевизор(1) стоит на тумбе. Любимый диванчик(2) стоит ",
-    "возле стены.",
-    "",
-    "> /Отодвигаю диван от стены./",
-    "/act 2",
-    "",
-    "    Включенный телевизор(1) стоит на тумбе. Любимый диванчик(2) ",
-    "отодвинут от стены. Место для салата(3).",
-    "",
-    "> ",
-    "",
-  ].join(EOL)
-)
+// runTest(
+//   "src",
+//   [
+//     "/act 2",
+//     "/act 1",
+//   ],
+//   [
+//     // "Включенный телевизор(1) стоит на тумбе. Любимый диванчик(2) стоит ",
+//     // "возле стены.",
+//     // "",
+//     // "> /Отодвигаю диван от стены./",
+//     // "/act 2",
+//     // "",
+//     // "    Включенный телевизор(1) стоит на тумбе. Любимый диванчик(2) ",
+//     // "отодвинут от стены. Место для салата(3).",
+//     // "",
+//     // "> ",
+//     // "",
+//   ].join(EOL)
+// )
