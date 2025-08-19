@@ -1,7 +1,7 @@
 // @ts-check
 import { spawn } from "node:child_process"
 import { dirname, join, resolve } from "node:path"
-import { platform } from "node:os"
+import { platform, EOL } from "node:os"
 import { diffChars } from "diff"
 import { fileURLToPath } from "url"
 import "colors"
@@ -99,5 +99,5 @@ runTest(
     "",
     "> ",
     "",
-  ].join("\r\n")
+  ].join(EOL)
 )
