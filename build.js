@@ -1,6 +1,6 @@
 // @ts-check
 import { get } from "https"
-import { existsSync, mkdirSync, createWriteStream, unlink, rmSync, writeFileSync, chmodSync } from "fs"
+import { existsSync, mkdirSync, createWriteStream, unlink, rmSync, writeFileSync, chmod } from "fs"
 import { dirname, join, resolve } from "path"
 import AdmZip from "adm-zip"
 
@@ -95,9 +95,17 @@ function installIsteadCli() {
       console.log(`Архив ${url} скачан в ${zipFilePath}`)
       unZip(zipFilePath, outputDir)
       console.log(`Архив распакован в ${outputDir}`)
-      chmodSync("node_modules/instead-cli-v1.7-a0f1e04/instead-cli", "001")
       rmSync(zipFilePath)
       console.log(`Файл ${zipFilePath} удален`)
+    })
+    .then(() => {
+      chmod("node_modules/instead-cli-v1.7-a0f1e04/instead-cli", 0o755, (err) => {
+        if (err) {
+          console.error('Ошибка при изменении прав:', err);
+        } else {
+          console.log('Права успешно изменены на u+x');
+        }
+      })
     })
     .then(() => {
       addStartupScripts()
