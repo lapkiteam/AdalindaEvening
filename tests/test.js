@@ -4,7 +4,9 @@ import { dirname, join, resolve } from "node:path"
 import { platform, EOL } from "node:os"
 import { diffChars } from "diff"
 import { fileURLToPath } from "url"
+import { fileSync } from "tmp"
 import "colors"
+import { writeFileSync } from "node:fs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -80,15 +82,17 @@ function equal(expected, actual) {
 
 /**
  * @param {string} gameFolder
- * @param {string} commandsPath
+ * @param {string[]} commands
  * @param {string} expected
  */
-async function runTest(gameFolder, commandsPath, expected) {
+async function runTest(gameFolder, commands, expected) {
+  const commandsFile = fileSync()
+  writeFileSync(commandsFile.name, commands.join("\n"))
   let result
   try {
     result = await runCommand(
       insteadCliPath,
-      ["-cp65001", `-i${commandsPath}`, "-e", "-d", gameFolder]
+      ["-cp65001", `-i${commandsFile.name}`, "-e", "-d", gameFolder]
     )
   } catch(e) {
     throw new Error(e.output)
@@ -103,9 +107,12 @@ async function runTest(gameFolder, commandsPath, expected) {
 
 runTest(
   "src",
-  "J:\\AdalindaEvening\\tests\\instead-cli-script",
   [
-    "Вклю1ченный телевизор(1) стоит на тумбе. Любимый диванчик(2) стоит ",
+    "/act 2",
+    "/act 1",
+  ],
+  [
+    "Включенный телевизор(1) стоит на тумбе. Любимый диванчик(2) стоит ",
     "возле стены.",
     "",
     "> /Отодвигаю диван от стены./",
