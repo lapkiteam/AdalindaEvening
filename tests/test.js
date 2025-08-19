@@ -1,5 +1,5 @@
 // @ts-check
-import { spawn } from "node:child_process"
+import { exec } from "node:child_process"
 import { dirname, join, resolve } from "node:path"
 import { platform, EOL } from "node:os"
 import { diffChars } from "diff"
@@ -13,39 +13,21 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 /**
  * @param {string} command
  * @param {string[]} args
- * @return {Promise<{ code: number, signal: NodeJS.Signals | null, output: string }>}
+ * @return {Promise<{ rawCommand: string, stdout: string, stderr: string }>}
  */
 function runCommand(command, args = []) {
   return new Promise((resolve, reject) => {
-    const child = spawn(command, args, { stdio: "pipe", shell: true })
-
-    let output = ""
-    child.stdout.on("data", (chunk) => {
-      output += chunk
-    })
-
-    child.stderr.on("data", (chunk) => {
-      output += chunk
-    })
-
-    child.on("error", (err) => {
-      reject(err)
-    })
-
-    child.on("close", (code, signal) => {
-      if (code === 0) {
-        resolve({ code, signal, output })
-      } else {
-        const err = new Error(
-          `Process ${command} exited with code ${code}${signal ? `, signal ${signal}` : ""}`
-        )
-        // @ts-expect-error 123
-        err.code = code
-        // @ts-expect-error 123
-        err.signal = signal
-        reject({err, output})
+    const rawCommand = `${command} ${args.join(" ")}`
+    exec(
+      rawCommand,
+      (error, stdout, stderr) => {
+        if (error) {
+          reject({ error, rawCommand, stdout, stderr })
+          return
+        }
+        resolve({ rawCommand, stdout, stderr })
       }
-    })
+    )
   })
 }
 
@@ -103,10 +85,10 @@ async function runTest(gameFolder, commands, expected) {
   try {
     result = await insteadCliRun(commandsFile.name, gameFolder)
   } catch(e) {
-    throw new Error(e.output)
+    throw new Error(e)
   }
-
-  const equalResult = equal(expected, result.output)
+  console.log(result.rawCommand)
+  const equalResult = equal(expected, result.stdout)
   if (equalResult.case === "Error") {
     throw new Error(equalResult.data)
   }
