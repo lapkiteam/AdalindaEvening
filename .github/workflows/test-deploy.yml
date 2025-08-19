@@ -24,7 +24,7 @@ jobs:
         run: npm ci
       - name: Run test
         run: |
-          ./node_modules/instead-cli-v1.7-a0f1e04/instead-cli src
+          # ./node_modules/instead-cli-v1.7-a0f1e04/instead-cli src
           echo ====
           cd ./node_modules/instead-cli-v1.7-a0f1e04
           ./instead-cli ../../src
