@@ -1,0 +1,134 @@
+// @ts-check
+import { get } from "https"
+import { existsSync, mkdirSync, createWriteStream, unlink, rmSync, writeFileSync, chmod, cpSync } from "fs"
+import { dirname, join, resolve } from "path"
+import AdmZip from "adm-zip"
+import { platform } from "os"
+
+/**
+ * @param {string} url
+ * @param {string} outputPath
+ * @return {Promise<void>}
+ */
+function download(url, outputPath) {
+  return new Promise((resolve, reject) => {
+    const outputDir = dirname(outputPath)
+    if (!existsSync(outputDir)) {
+      mkdirSync(outputDir, { recursive: true })
+    }
+    function loop(/** @type {string} url */ url) {
+      get(url, (response) => {
+        if (response.statusCode === 200) {
+          const file = createWriteStream(outputPath)
+          response.pipe(file)
+
+          file.on("finish", () => {
+            file.close(() => {
+              resolve()
+            })
+          }).on("error", (err) => {
+            unlink(outputPath, () => {
+              reject(err.message)
+            })
+          })
+        } else if (response.statusCode === 302) {
+          const redirectUrl = response.headers.location
+          if (!redirectUrl) { return }
+          loop(redirectUrl)
+        } else {
+          reject(`Ошибка загрузки: ${response.statusCode}`)
+        }
+      }).on("error", (err) => {
+        reject(err.message)
+      })
+    }
+    loop(url)
+  })
+}
+
+/**
+ * @param {string | Buffer} zipFilePath
+ * @param {string} outputDir
+ */
+function unZip(zipFilePath, outputDir) {
+  const zip = new AdmZip(zipFilePath)
+  zip.extractAllTo(outputDir, true)
+}
+
+function addStartupScripts() {
+  const binPath = "node_modules/.bin"
+  const bashScript = `#!/bin/sh
+basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+
+case \`uname\` in
+    *CYGWIN*|*MINGW*|*MSYS*)
+        if command -v cygpath > /dev/null 2>&1; then
+            basedir=\`cygpath -w "$basedir"\`
+        fi
+    ;;
+esac
+
+exec "$basedir/../instead-cli-v1.7-a0f1e04/instead-cli" "$@"
+`
+  writeFileSync(join(binPath, "instead-cli"), bashScript)
+
+  const cmdScript = `@ECHO off
+GOTO start
+:find_dp0
+SET dp0=%~dp0
+EXIT /b
+:start
+SETLOCAL
+CALL :find_dp0
+
+endLocal & "%dp0%\\..\\instead-cli-v1.7-a0f1e04\\instead-cli.exe" %*
+`
+  writeFileSync(join(binPath, "instead-cli.cmd"), cmdScript)
+}
+
+async function installIsteadCli() {
+  const url = "https://github.com/gretmn102/instead-cli/releases/download/v1.7-a0f1e04/instead-cli-v1.7-a0f1e04.zip"
+  const outputDir = "node_modules"
+  const zipFileName = "release.zip"
+  const zipFilePath = join(outputDir, zipFileName)
+
+  try {
+    await download(url, zipFilePath)
+  } catch(e) {
+    console.error(`download error: ${e}`)
+    throw new Error(e)
+  }
+
+  console.log(`Архив ${url} скачан в ${zipFilePath}`)
+  unZip(zipFilePath, outputDir)
+  console.log(`Архив распакован в ${outputDir}`)
+  rmSync(zipFilePath)
+  console.log(`Файл ${zipFilePath} удален`)
+
+  const insteadDir = "node_modules/instead-cli-v1.7-a0f1e04"
+
+  if (platform() === "linux") { // fix: Can not init game: src (cannot open ./stead//stead3/stead.lua: No such file or directory)
+    cpSync(`${insteadDir}/stead`, "stead", { recursive: true })
+  }
+
+  let chmodResult
+  try {
+    chmodResult = await new Promise((resolve, reject) => {
+      chmod(join(insteadDir, "instead-cli"), 0o755, (err) => {
+        if (err) {
+          reject(`Ошибка при изменении прав: ${err}`)
+          return
+        }
+        resolve("Права успешно изменены на u+x")
+      })
+    })
+  } catch(e) {
+    console.error(`download error: ${e}`)
+    throw new Error(e)
+  }
+
+  addStartupScripts()
+  console.log("Startup scripts are written in the `node_modules/.bin` folder.")
+}
+
+installIsteadCli()
