@@ -50,6 +50,7 @@ local ids = {
   potato = obj_getter:new("potato"),
   eggs = obj_getter:new("eggs"),
   mayo = obj_getter:new("mayo"),
+  cucumber_nunchucks = obj_getter:new("cucumber_nunchucks"),
   fridge = obj_getter:new("fridge"),
   sink_cabinet = obj_getter:new("sink_cabinet"),
   -- characters

@@ -17,6 +17,7 @@ obj {
     local ex_boyfriend = ids.ex_boyfriend:get()
     place(ex_boyfriend, _(ids.corridor.id))
     pn "Кажется, кто-то приперся..."
+    place(ids.cucumber_nunchucks.id, ids.kitchen.id)
   end,
   inv = "Хорошие огурцы, крепкие. Была бы цепь, сделала бы из них нунчаки.",
   use = function (this, another)
