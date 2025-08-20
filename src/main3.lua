@@ -18,13 +18,17 @@ include "objects/sausage.lua"
 include "objects/potato.lua"
 include "objects/eggs.lua"
 include "objects/mayo.lua"
+include "objects/cucumber_nunchucks.lua"
 include "objects/fridge.lua"
 include "objects/sink_cabinet.lua"
+-- characters
+include "objects/ex_boyfriend.lua"
 -- rooms
 include "rooms/kitchen.lua"
 include "rooms/hall.lua"
 include "rooms/fridge_inner.lua"
 include "rooms/sink_cabinet_inner.lua"
+include "rooms/corridor.lua"
 include "rooms/the_end.lua"
 
 fmt.para = true
