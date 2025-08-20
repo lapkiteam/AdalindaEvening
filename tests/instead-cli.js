@@ -46,6 +46,7 @@ export function run(commandsFilePath, gameFolderPath) {
       `-i${commandsFilePath}`,
       "-e",
       "-d",
+      "-w2048",
       gameFolderPath,
     ]
   )
