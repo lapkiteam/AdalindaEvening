@@ -57,7 +57,8 @@ async function runTest(gameFolder, commands, expected) {
   const actual = result.stdout
   const equalResult = equal(expected, actual)
   if (equalResult.case === "Error") {
-    console.log(equalResult.data)
+    console.error(equalResult.data)
+    console.error(`actual:\n${actual}`)
     throw new Error(JSON.stringify({ expected, actual }, undefined, 2))
   }
   console.log("Test success!")
