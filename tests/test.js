@@ -35,7 +35,7 @@ function equal(expected, actual) {
  * @param {string[]} commands
  */
 function writeCommandsToFile(commands) {
-  const fileResult = fileSync()
+  const fileResult = fileSync({ prefix: "instead-cli-js" })
   writeFileSync(fileResult.name, commands.join("\n"))
   return fileResult
 }
