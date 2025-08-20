@@ -5,7 +5,8 @@ room {
   nam = ids.hall.id,
   disp = "Зал",
   way = {
-    path { "На кухню", ids.kitchen.id }
+    path { "На кухню", ids.kitchen.id },
+    path { "В прихожую", ids.corridor.id },
   },
 }:with {
   obj {

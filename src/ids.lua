@@ -58,6 +58,7 @@ local ids = {
   kitchen = room_getter:new("кухня"),
   fridge_inner = room_getter:new("fridge_inner"),
   sink_cabinet_inner = room_getter:new("sink_cabinet_inner"),
+  corridor = room_getter:new("corridor"),
 }
 
 return ids

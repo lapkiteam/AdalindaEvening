@@ -25,6 +25,7 @@ include "rooms/kitchen.lua"
 include "rooms/hall.lua"
 include "rooms/fridge_inner.lua"
 include "rooms/sink_cabinet_inner.lua"
+include "rooms/corridor.lua"
 include "rooms/the_end.lua"
 
 fmt.para = true

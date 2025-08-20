@@ -5,6 +5,7 @@ room {
   disp = "Кухня",
   way = {
     path { "В холл", ids.hall.id },
+    path { "В прихожую", ids.corridor.id },
   }
 }:with {
   ids.kitchen_table.id,
