@@ -32,13 +32,21 @@ function equal(expected, actual) {
 }
 
 /**
+ * @param {string[]} commands
+ */
+function writeCommandsToFile(commands) {
+  const fileResult = fileSync()
+  writeFileSync(fileResult.name, commands.join("\n"))
+  return fileResult
+}
+
+/**
  * @param {string} gameFolder
  * @param {string[]} commands
  * @param {string} expected
  */
 async function runTest(gameFolder, commands, expected) {
-  const commandsFile = fileSync()
-  writeFileSync(commandsFile.name, commands.join("\n"))
+  const commandsFile = writeCommandsToFile(commands)
   let result
   try {
     result = await insteadCli.run(commandsFile.name, gameFolder)
