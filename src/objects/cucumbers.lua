@@ -12,7 +12,12 @@ obj {
     end
     return "На полу валяются {огурцы}."
   end,
-  tak = "Вооружаюсь боевыми огурцами.",
+  tak = function ()
+    pn "Вооружаюсь боевыми огурцами."
+    local ex_boyfriend = ids.ex_boyfriend:get()
+    place(ex_boyfriend, _(ids.corridor.id))
+    pn "Кажется, кто-то приперся..."
+  end,
   inv = "Хорошие огурцы, крепкие. Была бы цепь, сделала бы из них нунчаки.",
   use = function (this, another)
     pn(another.disp.." получает кия!")

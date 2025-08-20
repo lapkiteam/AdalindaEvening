@@ -20,6 +20,8 @@ include "objects/eggs.lua"
 include "objects/mayo.lua"
 include "objects/fridge.lua"
 include "objects/sink_cabinet.lua"
+-- characters
+include "objects/ex_boyfriend.lua"
 -- rooms
 include "rooms/kitchen.lua"
 include "rooms/hall.lua"

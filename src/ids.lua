@@ -52,6 +52,8 @@ local ids = {
   mayo = obj_getter:new("mayo"),
   fridge = obj_getter:new("fridge"),
   sink_cabinet = obj_getter:new("sink_cabinet"),
+  -- characters
+  ex_boyfriend = obj_getter:new("ex_boyfriend"),
   -- rooms
   hall = room_getter:new("hall"),
   the_end = room_getter:new("the_end"),
