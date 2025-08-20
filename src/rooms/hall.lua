@@ -24,6 +24,12 @@ room {
         local salad = ids.salad:get()
         local the_end = ids.the_end:get()
         if salad_place == salad:where() then
+          local ex_boyfriend = ids.ex_boyfriend:get()
+          local ex_boyfriend_location = ex_boyfriend:inroom()
+          if ex_boyfriend_location ~= nil and ex_boyfriend_location.nam == ids.corridor.id then
+            pn("\"Вы не можете сидеть на диванчике и смотреть «Кошка в 16», пока рядом враги.\"")
+            return false
+          end
           walk(the_end)
           return false
         else
