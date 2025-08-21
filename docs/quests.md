@@ -80,9 +80,9 @@
   * Вкрутить [штопор](./items/corkscrew.md) в [огурец](./items/cucumber.md)
     * взять [штопор](./items/corkscrew.md) на верху [холодильника](./locations/kitchen/decors/fridge.md)
   * [найти цепочку](#найти-цепочку)
-* Привязать [цепочку](./items/chain.md) к [огурцу](./items/cucumber.md) с [макарожкой](./items/fusilli.md)
-  * Вкрутить [макарожку](./items/fusilli.md) в [огурец](./items/cucumber.md)
-    * взять [макарожку](./items/fusilli.md) в [шкафчик под раковиной](./locations/kitchen/decors/sink-cabinet.md)
+* Привязать [цепочку](./items/chain.md) к [огурцу](./items/cucumber.md) с [шурупом](./items/screw.md)
+  * Вкрутить [шуруп](./items/screw.md) в [огурец](./items/cucumber.md)
+    * взять [шуруп](./items/screw.md) возле стенки в [прихожей](./locations/corridor/index.md)
   * [найти цепочку](#найти-цепочку)
 
 ## найти цепочку
