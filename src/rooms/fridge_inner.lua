@@ -1,5 +1,5 @@
 local ids = require "ids"
-local utils = require "utils"
+local Cucumbers = require "src.objects.cucumbers"
 
 room {
   nam = ids.fridge_inner.id,
@@ -22,7 +22,7 @@ room {
   },
 }:with {
   ids.sausage.id,
-  ids.cucumbers.id,
+  Cucumbers:new(ids.cucumbers.id),
   ids.eggs.id,
   ids.mayo.id,
 }
