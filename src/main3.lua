@@ -21,6 +21,7 @@ include "objects/mayo.lua"
 include "objects/cucumber_nunchucks.lua"
 include "objects/fridge.lua"
 include "objects/sink_cabinet.lua"
+include "objects/corkscrew.lua"
 -- characters
 include "objects/ex_boyfriend.lua"
 -- rooms

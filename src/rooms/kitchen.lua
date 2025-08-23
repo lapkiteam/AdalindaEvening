@@ -12,4 +12,5 @@ room {
   ids.recipe.id,
   ids.fridge.id,
   ids.sink_cabinet.id,
+  ids.corkscrew.id,
 }

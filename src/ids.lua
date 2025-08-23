@@ -55,6 +55,7 @@ local ids = {
   cucumber_nunchucks = obj_getter:new("cucumber_nunchucks"),
   fridge = obj_getter:new("fridge"),
   sink_cabinet = obj_getter:new("sink_cabinet"),
+  corkscrew = obj_getter:new("corkscrew"),
   -- characters
   ex_boyfriend = obj_getter:new("ex_boyfriend"),
   -- rooms
