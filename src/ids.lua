@@ -76,6 +76,7 @@ local ids = {
   sink_cabinet = obj_getter:new("sink_cabinet"),
   corkscrew = obj_getter:new("corkscrew"),
   nunchucks_element1 = obj_getter:new("cucumber_element1", false),
+  screw = obj_getter:new("screw"),
   -- characters
   ex_boyfriend = obj_getter:new("ex_boyfriend"),
   -- rooms
