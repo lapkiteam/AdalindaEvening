@@ -78,6 +78,7 @@ local ids = {
   nunchucks_element1 = obj_getter:new("nunchucks_element1", false),
   nunchucks_element2 = obj_getter:new("nunchucks_element2", false),
   screw = obj_getter:new("screw"),
+  chain = obj_getter:new("chain"),
   -- characters
   ex_boyfriend = obj_getter:new("ex_boyfriend"),
   -- rooms

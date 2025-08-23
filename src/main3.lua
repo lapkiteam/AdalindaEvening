@@ -23,6 +23,7 @@ include "objects/fridge.lua"
 include "objects/sink_cabinet.lua"
 include "objects/corkscrew.lua"
 include "objects/screw.lua"
+include "objects/chain.lua"
 -- characters
 include "objects/ex_boyfriend.lua"
 -- rooms

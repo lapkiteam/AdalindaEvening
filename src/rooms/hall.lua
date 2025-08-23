@@ -44,4 +44,5 @@ room {
   ):with {
     ids.salad_place.id,
   },
+  ids.chain.id,
 }
