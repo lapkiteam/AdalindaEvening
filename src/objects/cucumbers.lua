@@ -1,4 +1,5 @@
 local ids = require "ids"
+local NunchucksElement = require "objects.nunchucks_element"
 
 ---@class Cucumber: Obj
 local Cucumber = std.class({
@@ -19,7 +20,12 @@ end
 function Cucumber:new(id, name, is_spawn_ex_boyfriend)
   local instance = obj {
     nam = id,
-    disp = name,
+    disp = function (this)
+      if NunchucksElement.is_nunchucks_element(this:where()) then
+        return false
+      end
+      return name
+    end,
     dsc = function (this)
       local where = this:where()
       if where.nam == ids.fridge_inner then
