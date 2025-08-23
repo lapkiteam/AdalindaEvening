@@ -22,10 +22,12 @@ function NunchucksElement:new(id)
       local hook = (function ()
         if utils.has(this, ids.corkscrew.id) then
           return " со штопором"
+        elseif utils.has(this, ids.screw.id) then
+          return " с шурупом"
         end
         return ""
       end)()
-      return "Огурец"..hook.."."
+      return "Огурец"..hook..""
     end,
     inv = "Странное изделие, я знаю.",
   }

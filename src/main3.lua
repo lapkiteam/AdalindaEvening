@@ -33,11 +33,16 @@ include "rooms/sink_cabinet_inner.lua"
 include "rooms/corridor.lua"
 include "rooms/the_end.lua"
 
+local NunchucksElement = require "objects.nunchucks_element"
+
 fmt.para = true
 
 game.act = "Не работает."
 game.use = "Это не поможет."
 game.inv = "Зачем мне это?"
+
+NunchucksElement:new(ids.nunchucks_element1.id)
+NunchucksElement:new(ids.nunchucks_element2.id)
 
 function init()
   walk(ids.hall:get())

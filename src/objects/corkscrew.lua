@@ -2,16 +2,6 @@ local ids = require "ids"
 local Cucumber = require "objects.cucumbers"
 local NunchucksElement = require "objects.nunchucks_element"
 
-local nunchucks_element_id = (function ()
-  local element = ids.nunchucks_element1:try_get()
-  if not element then
-    return "nunchucks_element1 занят!"
-  end
-  return ids.nunchucks_element1.id
-end)()
-local nunchucks_element = NunchucksElement:new(nunchucks_element_id)
-ids.nunchucks_element1:init()
-
 obj {
   nam = ids.corkscrew.id,
   disp = function (this)
@@ -34,6 +24,13 @@ obj {
   end,
   use = function (this, another)
     if Cucumber.is_cucumber(another) then
+      local nunchucks_element = (function ()
+        local nunchucks_element1 = ids.nunchucks_element1:get()
+        if #nunchucks_element1.obj ~= 0 then
+          return ids.nunchucks_element2:get()
+        end
+        return nunchucks_element1
+      end)()
       take(nunchucks_element)
       place(this, nunchucks_element)
       place(another, nunchucks_element)
