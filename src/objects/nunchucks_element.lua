@@ -27,7 +27,13 @@ function NunchucksElement:new(id)
         end
         return ""
       end)()
-      return "Огурец"..hook..""
+      local chain = (function ()
+        if utils.has(this, ids.chain.id) then
+          return " и цепочкой"
+        end
+        return ""
+      end)()
+      return "Огурец"..hook..chain..""
     end,
     inv = "Странное изделие, я знаю.",
   }
