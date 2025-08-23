@@ -41,7 +41,6 @@ function Cucumber:new(id, name, is_spawn_ex_boyfriend)
         local ex_boyfriend = ids.ex_boyfriend:get()
         place(ex_boyfriend, _(ids.corridor.id))
         pn "Кажется, кто-то приперся..."
-        place(ids.cucumber_nunchucks.id, ids.kitchen.id)
       end
     end,
     inv = "Хороший огурец, крепкий. Была бы цепь, сделала бы из него нунчаки.",
