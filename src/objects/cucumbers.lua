@@ -15,7 +15,7 @@ end
 ---@param id ObjId
 ---@param name string
 ---@param is_spawn_ex_boyfriend boolean
----@return Obj
+---@return Cucumber
 function Cucumber:new(id, name, is_spawn_ex_boyfriend)
   local instance = obj {
     nam = id,
@@ -44,7 +44,7 @@ function Cucumber:new(id, name, is_spawn_ex_boyfriend)
       pn(another.disp.." получает кия!")
     end
   }
-  return setmetatable(instance, self)
+  return setmetatable(instance, self) --[[@as Cucumber]]
 end
 
 return Cucumber
