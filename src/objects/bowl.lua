@@ -1,9 +1,18 @@
 local ids = require "ids"
 local utils = require "utils"
+local Cucumber = require "objects.cucumbers"
+
+---@param bowl Obj
+---@return boolean
+local function has_cucumber(bowl)
+  return utils.has(bowl, ids.cucumber1.id)
+    or utils.has(bowl, ids.cucumber2.id)
+    or utils.has(bowl, ids.cucumber3.id)
+end
 
 local function test_salad_ready(bowl)
   return utils.has(bowl, ids.sausage.id)
-    and utils.has(bowl, ids.cucumbers.id)
+    and has_cucumber(bowl)
     and utils.has(bowl, ids.canned_peas.id)
     and utils.has(bowl, ids.potato.id)
     and utils.has(bowl, ids.eggs.id)
@@ -49,9 +58,13 @@ obj {
       pn "Вытряхиваю горошек в тазик."
       exec()
       return true
-    elseif another.nam == ids.cucumbers.id then
-      pn "Кладу огурец в тазик."
-      exec()
+    elseif Cucumber.is_cucumber(another) then
+      if has_cucumber(this) then
+        pn "Одного огурца будет достаточно."
+      else
+        pn "Кладу огурец в тазик."
+        exec()
+      end
       return true
     elseif another.nam == ids.sausage.id then
       pn "Колбаса летит в тазик."

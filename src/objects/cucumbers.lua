@@ -1,72 +1,44 @@
 local ids = require "ids"
 
----@class CucumbersData
----@field count integer
-local cucumbers_model = {}
+---@class Cucumber: Obj
+local Cucumber = std.class({
+  __cucumber_type = true
+}, obj)
 
----@return CucumbersData
-function cucumbers_model.new(count)
-  ---@type CucumbersData
-  local instance = {
-    count = count,
-  }
-  return instance
+---@param obj Obj
+---@return boolean
+function Cucumber.is_cucumber(obj)
+  ---@diagnostic disable-next-line: undefined-field
+  return type(obj) == "table" and obj.__cucumber_type ~= nil
 end
 
----@class CucumbersModel
----@field data CucumbersData
-local cucumbers_model = {}
-
-function cucumbers_model:new(data)
-  ---@type CucumbersModel
-  local instance = {
-    data = data
-  }
-  return setmetatable(instance, self)
-end
-
-function cucumbers_model:decrement()
-  local model = self.data
-  model.count = model.count - 1
-  if model.count <= 0 then
-    ids.cucumbers:get():remove()
-  end
-end
-
----@class Cucumbers: Obj
-local Cucumbers = std.class({}, obj)
-
-function Cucumbers:new(id)
+---@param id ObjId
+---@param name string
+---@param is_spawn_ex_boyfriend boolean
+---@return Obj
+function Cucumber:new(id, name, is_spawn_ex_boyfriend)
   local instance = obj {
     nam = id,
-    disp = function (this)
-      ---@type CucumbersData
-      local data = this.state
-      local count = data.count
-      if count == 1 then
-        return "Огурец"
-      elseif 2 <= count and count >= 4 then
-        return count.." огурца"
-      end
-      return count.." огурцов"
-    end,
+    disp = name,
     dsc = function (this)
       local where = this:where()
       if where.nam == ids.fridge_inner then
-        return "В лотке для овощей спрятаны {огурцы}."
+        return "В лотке для овощей спрятан {"..name.."}."
       elseif where.nam == ids.bowl.id then
         return false
       end
-      return "На полу валяются {огурцы}."
+      return "На полу валяется {"..name.."}."
     end,
     tak = function ()
       pn "Вооружаюсь боевыми огурцами."
-      local ex_boyfriend = ids.ex_boyfriend:get()
-      place(ex_boyfriend, _(ids.corridor.id))
-      pn "Кажется, кто-то приперся..."
-      place(ids.cucumber_nunchucks.id, ids.kitchen.id)
+      if is_spawn_ex_boyfriend then
+        local ex_boyfriend = ids.ex_boyfriend:get()
+        place(ex_boyfriend, _(ids.corridor.id))
+        pn "Кажется, кто-то приперся..."
+        place(ids.cucumber_nunchucks.id, ids.kitchen.id)
+      end
     end,
-    inv = "Хорошие огурцы, крепкие. Была бы цепь, сделала бы из них нунчаки.",
+    inv = "Хороший огурец, крепкий. Была бы цепь, сделала бы из него нунчаки.",
     use = function (this, another)
       -- todo: если бывший, то "Он только этого и ждет, но не дождется."
       pn(another.disp.." получает кия!")
@@ -75,9 +47,4 @@ function Cucumbers:new(id)
   return setmetatable(instance, self)
 end
 
-function Cucumbers:remove_one()
-  local model = cucumbers_model:new(self.state)
-  model:decrement()
-end
-
-return Cucumbers
+return Cucumber
