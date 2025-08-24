@@ -19,21 +19,40 @@ end
 
 ---@class ObjGetter
 ---@field id ObjId
+---@field initialized boolean
 local obj_getter = std.class({})
 
 ---@param obj_id ObjId
+---@param initialized boolean?
 ---@return ObjGetter
-function obj_getter:new(obj_id)
+function obj_getter:new(obj_id, initialized)
   ---@type ObjGetter
   local instance = {
     id = obj_id,
+    initialized = (function ()
+      if initialized == nil then return true
+      else return initialized
+      end
+    end)(),
   }
   return setmetatable(instance, self)
+end
+
+---@return Obj?
+function obj_getter:try_get()
+  if not self.initialized then
+    return nil
+  end
+  return _(self.id) --[[@as Obj]]
 end
 
 ---@return Obj
 function obj_getter:get()
   return _(self.id) --[[@as Obj]]
+end
+
+function obj_getter:init()
+  self.initialized = true
 end
 
 local ids = {
@@ -45,7 +64,9 @@ local ids = {
   bowl = obj_getter:new("bowl"),
   recipe = obj_getter:new("recipe"),
   sausage = obj_getter:new("sausage"),
-  cucumbers = obj_getter:new("cucumbers"),
+  cucumber1 = obj_getter:new("cucumber1"),
+  cucumber2 = obj_getter:new("cucumber2"),
+  cucumber3 = obj_getter:new("cucumber3"),
   canned_peas = obj_getter:new("canned_peas"),
   potato = obj_getter:new("potato"),
   eggs = obj_getter:new("eggs"),
@@ -53,6 +74,11 @@ local ids = {
   cucumber_nunchucks = obj_getter:new("cucumber_nunchucks"),
   fridge = obj_getter:new("fridge"),
   sink_cabinet = obj_getter:new("sink_cabinet"),
+  corkscrew = obj_getter:new("corkscrew"),
+  nunchucks_element1 = obj_getter:new("nunchucks_element1", false),
+  nunchucks_element2 = obj_getter:new("nunchucks_element2", false),
+  screw = obj_getter:new("screw"),
+  chain = obj_getter:new("chain"),
   -- characters
   ex_boyfriend = obj_getter:new("ex_boyfriend"),
   -- rooms
