@@ -1,8 +1,11 @@
 // @ts-check
-import { exec } from "node:child_process"
+import { exec, spawn } from "node:child_process"
 import { dirname, join, resolve } from "node:path"
 import { platform } from "node:os"
 import { fileURLToPath } from "url"
+import internal from "node:stream"
+import { MutableMail } from "./mail"
+import { UnionCase } from "@fering-org/functional-helper"
 
 export const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -24,6 +27,26 @@ export function runCommand(command, args = []) {
         resolve({ rawCommand, stdout, stderr })
       }
     )
+  })
+}
+
+/**
+ * @param {string} command
+ * @param {string[]} args
+ * @param {internal.Writable} stdin
+ * @param {(src: internal.Readable) => void} stdout
+ * @param {(src: internal.Readable) => void} stderr
+ * @return {Promise<{ rawCommand: string, stdout: string, stderr: string }>}
+ */
+export function runCommandPipe(command, args = [], stdin, stdout, stderr) {
+  return new Promise((resolve, reject) => {
+    // const rawCommand = `${command} ${args.join(" ")}`
+    const process = spawn(command, args, { stdio: "pipe" })
+    stdin = process.stdin
+    process.stdout.on("pipe", stdout)
+    process.stderr.on("pipe", stderr)
+    process.once("error", x => {})
+    process.once("close", x => {})
   })
 }
 
@@ -50,4 +73,57 @@ export function run(commandsFilePath, gameFolderPath) {
       gameFolderPath,
     ]
   )
+}
+
+
+/**
+ * @typedef {UnionCase<"stdout", internal.Readable>} PipeData
+ */
+
+/**
+ * @param {string} gameFolderPath
+ */
+export function runPipe(gameFolderPath) {
+  const command = path
+  const args = [
+    platform() === "win32" ? "-cp65001" : "",
+    "-e",
+    "-d",
+    "-w2048",
+    gameFolderPath,
+  ]
+
+
+  // /** @type {internal.Writable} */
+  // let stdin
+  // /** @type {(src: internal.Readable) => void} */
+  // let stdoutHandler
+  // /** @type {(src: internal.Readable) => void} */
+  // let stderrHandler
+  // let errorHandler
+  // let closeHandler
+
+  /** @type {MutableMail<PipeData>} */
+  const mail = MutableMail()
+
+  const process = spawn(command, args, { stdio: "pipe" })
+  stdin = process.stdin
+  process.stdout.on("pipe", out => {
+    mail.push({ case: "stdout", fields: out })
+  })
+  process.stderr.on("pipe", out => {
+    mail.push({ case: "stderr", fields: out })
+  })
+  process.once("error", err => {
+    mail.push({ case: "error", fields: err })
+  })
+  process.once("close", (code, signal) => {
+    mail.push({ case: "close", fields: { code, signal } })
+  })
+
+  return {
+    subscribeOnce(callback) {
+      mail.subscribeOnce(callback)
+    }
+  }
 }
