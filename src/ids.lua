@@ -82,6 +82,7 @@ local ids = {
   -- characters
   ex_boyfriend = obj_getter:new("ex_boyfriend"),
   -- rooms
+  menu = room_getter:new("menu"),
   hall = room_getter:new("hall"),
   the_end = room_getter:new("the_end"),
   kitchen = room_getter:new("кухня"),

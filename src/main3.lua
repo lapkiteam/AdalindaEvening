@@ -1,8 +1,8 @@
 -- $Name:Adalinda Evening$
 -- $Name(ru):Вечер Адалинды$
--- $Version: 0.2$
+-- $Version: 1.0$
 -- $Author: lapkiteam$
--- $Info: todo$
+-- $Info: План прост: любимая передача и салатик — но салат не сделан, телевизор сломан, ещё и бывший припёрся...$
 
 require "fmt"
 local ids = require "ids"
@@ -27,6 +27,7 @@ include "objects/chain.lua"
 -- characters
 include "objects/ex_boyfriend.lua"
 -- rooms
+include "rooms/menu.lua"
 include "rooms/kitchen.lua"
 include "rooms/hall.lua"
 include "rooms/fridge_inner.lua"
@@ -46,5 +47,5 @@ NunchucksElement:new(ids.nunchucks_element1.id)
 NunchucksElement:new(ids.nunchucks_element2.id)
 
 function init()
-  walk(ids.hall:get())
+  walk(ids.menu:get())
 end
